@@ -1,25 +1,27 @@
 'use client';
 import React, { useState } from 'react';
+import { questionObject } from '../questions';
 
 const Flashcard = () => {
   const [showAnswer, setShowAnswer] = useState(false);
 
-  const questionObject = [
-    {
-      title: 'Pinesetter',
-      question: 'here is a question',
-      answer: 'Here is an answer',
-    },
-  ];
-
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg">
+    <div className="max-w-lg rounded overflow-hidden shadow-lg">
       {questionObject.map(question => (
-        <>
+        <div key={question.id}>
           <div className="px-6 py-4">
             <div className="font-bold text-xl mb-2">{question.title}</div>
-            <p className="text-gray-700 text-base">{question.question}</p>
-            <button onClick={() => setShowAnswer(!showAnswer)}>
+            <p className=" text-base">{question.question}</p>
+            <h2 className="underline text-center uppercase mt-3">Options</h2>
+            {question.options.map(q => (
+              <>
+                <li>{q}</li>
+              </>
+            ))}
+            <button
+              className="outline-white"
+              onClick={() => setShowAnswer(!showAnswer)}
+            >
               Reveal Answer
             </button>
             <div>
@@ -32,7 +34,7 @@ const Flashcard = () => {
               )}
             </div>
           </div>
-        </>
+        </div>
       ))}
     </div>
   );
