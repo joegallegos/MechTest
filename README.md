@@ -2,6 +2,8 @@
 
 The point of this app is to help Bowlero mechanics study for their C-Mechanic A2 certification.
 
+This quick flash card study guide was done an about an hour, and does have some styling bugs.
+
 ## Getting Started
 
 First, run the development server:
