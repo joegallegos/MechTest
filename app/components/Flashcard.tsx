@@ -3,7 +3,7 @@ import React from 'react';
 
 const Flashcard = ({ title, question, id, options }: any) => {
   return (
-    <div className="min-w-md max-w-md max-h-96 rounded bg-blue-600">
+    <div className="min-w-md max-w-md rounded bg-blue-600">
       <div key={id}>
         <div className="px-6 py-4">
           <div className="font-bold text-xl mb-2">{title}</div>
