@@ -2,7 +2,7 @@
 import Flashcard from './components/Flashcard';
 import { questionObject } from './questions';
 import { useState } from 'react';
-import { Button, ButtonGroup } from '@nextui-org/react';
+import { Button } from '@nextui-org/react';
 
 const getRandomObject = (array: string | any[]) => {
   const randomObject = array[Math.floor(Math.random() * array.length)];
@@ -16,7 +16,7 @@ export default function Home() {
   const [showAnswer, setShowAnswer] = useState(false);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 text-wrap">
+    <main className="flex min-h-screen flex-col items-center justify-evenly p-24">
       <div>
         <h1 className="text-center">Brunswick A2 C-Mechanic Helper</h1>
         {randomData.map(
@@ -53,13 +53,22 @@ export default function Home() {
                 </Button>
               </div>
               <div className="mt-6">
-                {showAnswer ? (
-                  <span className="bg-slate-500 text-base p-4 rounded overflow-x-auto">
+                <span
+                  className={
+                    showAnswer
+                      ? 'text-medium rounded'
+                      : 'bg-transparent text-transparent'
+                  }
+                >
+                  {question.answer}
+                </span>
+                {/* {showAnswer ? (
+                  <p className="bg-slate-500 text-base p-4 rounded overflow-x-auto">
                     {question.answer}
-                  </span>
+                  </p>
                 ) : (
                   ''
-                )}
+                )} */}
               </div>
             </div>
           ),
