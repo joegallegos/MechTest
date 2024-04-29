@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-evenly p-24">
-      <div>
+      <div className="min-w-[400px] max-w-[400px]">
         <h1 className="text-center">Brunswick A2 C-Mechanic Helper</h1>
         {randomData.map(
           (question: {
@@ -52,7 +52,7 @@ export default function Home() {
                   Next Question
                 </Button>
               </div>
-              <div className="mt-6">
+              <div className="mt-6 text-center items-center min-w-full">
                 <span
                   className={
                     showAnswer
@@ -62,13 +62,6 @@ export default function Home() {
                 >
                   {question.answer}
                 </span>
-                {/* {showAnswer ? (
-                  <p className="bg-slate-500 text-base p-4 rounded overflow-x-auto">
-                    {question.answer}
-                  </p>
-                ) : (
-                  ''
-                )} */}
               </div>
             </div>
           ),
