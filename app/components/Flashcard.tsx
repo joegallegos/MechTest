@@ -3,7 +3,7 @@ import React from 'react';
 
 const Flashcard = ({ answer, flipped, title, question, id, options }: any) => {
   return (
-    <div className="flex bg-blue-600 rounded min-h-[375px] max-h-[375px] items-center">
+    <div className="flex bg-blue-600 rounded min-h-[415px] max-h-[415px] items-center justify-center">
       <div key={id}>
         <div className="px-6 py-4">
           {flipped ? (
