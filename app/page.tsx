@@ -3,6 +3,7 @@ import Flashcard from './components/Flashcard';
 import { questionObject } from './questions';
 import { useState } from 'react';
 import { Button } from '@nextui-org/react';
+import ReactCardFlip from 'react-card-flip';
 
 const getRandomObject = (array: string | any[]) => {
   const randomObject = array[Math.floor(Math.random() * array.length)];
@@ -13,12 +14,15 @@ export default function Home() {
   const [randomData, setRandomData] = useState(() =>
     getRandomObject(questionObject),
   );
-  const [showAnswer, setShowAnswer] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(true);
+  const handleClick = () => {
+    setIsFlipped(!isFlipped);
+  };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-evenly p-24">
+    <main className="flex flex-col items-center min-h-screen p-24 justify-evenly">
       <div className="min-w-[400px] max-w-[400px]">
-        <h1 className="text-center">Brunswick A2 C-Mechanic Helper</h1>
+        <h1 className="text-center">Bowlero Brunswick A2 C-Mechanic Helper</h1>
         {randomData.map(
           (question: {
             id: number;
@@ -27,45 +31,48 @@ export default function Home() {
             answer: string;
             options: string[];
           }) => (
-            <div key={question.id}>
+            <ReactCardFlip
+              key={question.id}
+              isFlipped={isFlipped}
+              flipDirection="horizontal"
+              flipSpeedBackToFront={0.8}
+              flipSpeedFrontToBack={0.8}
+            >
               <Flashcard
+                className="front"
+                key={question.id}
+                title={question.title}
+                question={question.question}
+                answer={question.answer}
+                options={question.options}
+                flipped={isFlipped}
+              />
+              <Flashcard
+                className="back"
+                flipped={isFlipped}
                 key={question.id}
                 title={question.title}
                 question={question.question}
                 answer={question.answer}
                 options={question.options}
               />
-              <div className="flex pt-4 justify-between min-w-full">
-                <Button
-                  color="primary"
-                  onClick={() => setShowAnswer(!showAnswer)}
-                >
-                  {showAnswer ? 'Hide Answer' : 'Show Answer'}
-                </Button>
-                <Button
-                  color="secondary"
-                  onClick={() => {
-                    setRandomData(getRandomObject(questionObject));
-                    setShowAnswer(false);
-                  }}
-                >
-                  Next Question
-                </Button>
-              </div>
-              <div className="mt-6 text-center items-center min-w-full">
-                <span
-                  className={
-                    showAnswer
-                      ? 'text-medium rounded'
-                      : 'bg-transparent text-transparent'
-                  }
-                >
-                  {question.answer}
-                </span>
-              </div>
-            </div>
+            </ReactCardFlip>
           ),
         )}
+        <div className="flex justify-between min-w-full pt-4">
+          <Button color="primary" onClick={handleClick}>
+            {!isFlipped ? 'Hide Answer' : 'Show Answer'}
+          </Button>
+          <Button
+            color="secondary"
+            onClick={() => {
+              setRandomData(getRandomObject(questionObject));
+              setIsFlipped(true);
+            }}
+          >
+            Next Question
+          </Button>
+        </div>
       </div>
     </main>
   );

@@ -10,7 +10,7 @@ export const questionObject = [
       'Under the deck assembly',
       'In the pit conveyor',
     ],
-    answer: 'Under the deck Assembly',
+    answer: 'Between the deck and turret',
   },
   {
     id: 2,
